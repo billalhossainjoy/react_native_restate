@@ -5,7 +5,7 @@ import { Models } from "react-native-appwrite";
 
 interface IGlobalContext {
   isLoggedIn: boolean;
-  user: Models.User<Models.Preferences> | null;
+  user: Models.User<Models.Preferences> & {avatar: URL} | null;
   loading: boolean;
   refetch: (newPrams?: Record<string, string | number>) => Promise<void>;
 }
