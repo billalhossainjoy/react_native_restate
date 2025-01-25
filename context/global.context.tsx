@@ -7,7 +7,7 @@ interface IGlobalContext {
   isLoggedIn: boolean;
   user: Models.User<Models.Preferences> | null;
   loading: boolean;
-  refetch: (newPrams: Record<string, string | number>) => Promise<void>;
+  refetch: (newPrams?: Record<string, string | number>) => Promise<void>;
 }
 
 const GlobalContext = createContext<IGlobalContext | undefined>(undefined);

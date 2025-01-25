@@ -4,10 +4,17 @@ import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
 
 class Auth extends Appwrite {
+  constructor() {
+    super();
+
+    this.getUser = this.getUser.bind(this);
+  }
+
   async login() {
     try {
       const redirectUri = Linking.createURL("/");
-      const response = await this.account.createOAuth2Session(
+
+      const response = await this.account.createOAuth2Token(
         OAuthProvider.Google,
         redirectUri
       );
@@ -25,7 +32,6 @@ class Auth extends Appwrite {
       const secret = url.searchParams.get("secret")?.toString();
       const userId = url.searchParams.get("userId")?.toString();
 
-      console.log("user", browserResult.url);
       if (!userId || !secret) throw new Error("Failed to login");
 
       const session = await this.account.createSession(userId, secret);
@@ -35,7 +41,7 @@ class Auth extends Appwrite {
       return true;
     } catch (error) {
       console.error(error);
-      return error;
+      return false;
     }
   }
 
