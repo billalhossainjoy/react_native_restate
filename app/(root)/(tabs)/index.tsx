@@ -1,10 +1,12 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useGlobalContext } from "@/context/global.context";
 import images from "@/constants/images";
 import icons from "@/constants/icons";
 import Search from "@/components/search";
+import { Card, FeaturedCard } from "@/components/cards";
+import Filters from "@/components/filters";
 
 const index = () => {
   const { user } = useGlobalContext();
@@ -34,9 +36,36 @@ const index = () => {
               Featured
             </Text>
             <TouchableOpacity>
-              <Text className="text-base font-rubik-bold text-primary-300">See All</Text>
+              <Text className="text-base font-rubik-bold text-primary-300">
+                See All
+              </Text>
             </TouchableOpacity>
           </View>
+        </View>
+
+        <View className="flex flex-row gap-4">
+          <FeaturedCard />
+          <FeaturedCard />
+        </View>
+
+        <View className="mt-5">
+          <View className="flex flex-row justify-between items-center">
+            <Text className="text-xl font-rubik-bold text-black-300">
+              Our Recomendation
+            </Text>
+            <TouchableOpacity>
+              <Text className="text-base font-rubik-bold text-primary-300">
+                See All
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <Filters />
+
+        <View className="flex flex-row gap-3 mt-6">
+          <Card />
+          <Card />
         </View>
       </View>
     </SafeAreaView>
