@@ -61,11 +61,12 @@ const Profile = () => {
           <Text className="text-xl font-rubik-bold">Profile</Text>
           <Image className="size-5" source={icons.bell} />
         </View>
+
         <View className="flex flex-row justify-center mt-5 ">
           <View className="flex flex-col items-center relative mt-5 ">
             {user?.avatar && (
               <Image
-                source={images.avatar}
+                source={{ uri: user?.avatar.toString() }}
                 className="size-44 relative rounded-full"
               />
             )}
@@ -91,6 +92,7 @@ const Profile = () => {
             onPress={() => {}}
           />
         </View>
+
         <View className="flex flex-col mt-5 border-t border-primary-200 pt-5">
           {settings.slice(2).map((item, index) => (
             <SettingsItem

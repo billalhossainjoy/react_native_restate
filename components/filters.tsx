@@ -36,7 +36,7 @@ const filters = () => {
           }`}
         >
           <Text
-            className={` font-rubik-bold  ${
+            className={` font-rubik-bold text-sm pt-1 ${
               selectedCategory === item.category
                 ? "text-white"
                 : "text-black-100"
