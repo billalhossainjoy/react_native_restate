@@ -1,11 +1,11 @@
 import { useAppwrite } from "@/hooks/useAppwrite";
-import auth from "@/lib/appwrite/auth";
+import auth from "@/lib/appwrite/services/auth";
 import { createContext, useContext } from "react";
 import { Models } from "react-native-appwrite";
 
 interface IGlobalContext {
   isLoggedIn: boolean;
-  user: Models.User<Models.Preferences> & {avatar: URL} | null;
+  user: (Models.User<Models.Preferences> & { avatar: URL }) | null;
   loading: boolean;
   refetch: (newPrams?: Record<string, string | number>) => Promise<void>;
 }

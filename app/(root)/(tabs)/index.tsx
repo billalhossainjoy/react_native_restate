@@ -3,25 +3,41 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  ScrollView,
   FlatList,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useGlobalContext } from "@/context/global.context";
-import images from "@/constants/images";
 import icons from "@/constants/icons";
 import Search from "@/components/search";
 import { Card, FeaturedCard } from "@/components/cards";
 import Filters from "@/components/filters";
+import { useAppwrite } from "@/hooks/useAppwrite";
+import Features from "@/lib/appwrite/services/features";
+import { useLocalSearchParams } from "expo-router";
 
 const index = () => {
   const { user } = useGlobalContext();
+  const params = useLocalSearchParams<{ query?: string; filter: string }>();
+
+  const { data: latestProperties, loading: latestPropertiesLoading } =
+    useAppwrite({ fn: Features.getLatestProperties });
+
+  const { data: featuresProperties, loading: featuresPropertiesLoading } =
+    useAppwrite({
+      fn: Features.getProperties,
+      params: {
+        filter: params.filter!,
+        query: params.query!,
+        limit: 6,
+      },
+      skip: true,
+    });  
 
   return (
     <SafeAreaView className="bg-white h-full">
       <FlatList
-        data={[1, 2]}
+        data={latestProperties}
         renderItem={({ item }) => <Card />}
         contentContainerClassName="pb-32"
         numColumns={2}
@@ -63,7 +79,7 @@ const index = () => {
             </View>
 
             <FlatList
-              data={[1, 2]}
+              data={featuresProperties}
               renderItem={() => <FeaturedCard />}
               keyExtractor={(item) => item.toString()}
               horizontal

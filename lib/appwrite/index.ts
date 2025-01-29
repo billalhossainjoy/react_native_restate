@@ -1,10 +1,12 @@
 import { config } from "@/config/app.config";
-import { Account, Avatars, Client } from "react-native-appwrite";
+import { Account, Avatars, Client, Databases } from "react-native-appwrite";
 
 class Appwrite {
   client = new Client();
   avatar: Avatars;
   account: Account;
+  databases: Databases
+
   constructor() {
     this.client
       .setProject(config.projectId)
@@ -13,6 +15,7 @@ class Appwrite {
 
     this.avatar = new Avatars(this.client);
     this.account = new Account(this.client);
+    this.databases = new Databases(this.client)
   }
 
   async getCurrentUser() {

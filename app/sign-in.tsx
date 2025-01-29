@@ -10,7 +10,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import images from "@/constants/images";
 import icons from "@/constants/icons";
-import auth from "@/lib/appwrite/auth";
+import auth from "@/lib/appwrite/services/auth";
 import { useGlobalContext } from "@/context/global.context";
 import { Redirect } from "expo-router";
 

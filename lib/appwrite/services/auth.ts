@@ -1,5 +1,5 @@
 import { OAuthProvider } from "react-native-appwrite";
-import Appwrite from ".";
+import Appwrite from "..";
 import * as Linking from "expo-linking";
 import { openAuthSessionAsync } from "expo-web-browser";
 

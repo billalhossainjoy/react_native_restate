@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 type IParams = Record<string, string | number>;
 
 interface UseAppWriteOptions<T, P extends IParams> {
-  fn: (params?: P) => Promise<T>;
+  fn: (params: P) => Promise<T>;
   params?: P;
   skip?: boolean;
 }
@@ -12,7 +12,7 @@ interface UseAppWriteReturn<T, P> {
   data: T | null;
   loading: boolean;
   error: string | null;
-  refetch: (newParams?: P) => Promise<void>;
+  refetch: (newParams: P) => Promise<void>;
 }
 
 export const useAppwrite = <T, P extends IParams>({
@@ -25,7 +25,7 @@ export const useAppwrite = <T, P extends IParams>({
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = useCallback(
-    async (fetchParams?: P) => {
+    async (fetchParams: P) => {
       setLoading(true);
       setError(null);
 
@@ -46,7 +46,7 @@ export const useAppwrite = <T, P extends IParams>({
     if (!skip) fetchData(params);
   }, []);
 
-  const refetch = async (newParams?: P) => await fetchData(newParams);
+  const refetch = async (newParams: P) => await fetchData(newParams);
 
   return { data, loading, error, refetch };
 };
